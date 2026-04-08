@@ -4,4 +4,6 @@ version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
     "numpy>=2.4.4",
+    "pandas>=3.0.2",
+    "sklearn-utils>=0.0.15",
 ]

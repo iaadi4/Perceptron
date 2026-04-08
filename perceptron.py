@@ -1,9 +1,8 @@
 import numpy as np
 
 class Perceptron(object):
-    
     """
-    learning rate (range -> 0 to 1) -- it is a hyperparameter that controls how much to change
+    learning_rate (range -> 0 to 1) -- it is a hyperparameter that controls how much to change
     the model in response to estimated error each time the model weight is updated
     
     n_iters -- no of iterations or random trials the search algorithms performs to find the
@@ -14,49 +13,46 @@ class Perceptron(object):
         self.learning_rate = learning_rate
         self.n_iters = n_iters
         
-    def weighted_sum(self, x):
+    def net_input(self, x):
         # dot product of input and weights + bias
-        return np.dot(self.weighted_sum[1:], x) + self.weighted_sum[0]
+        return np.dot(x, self.weights[1:]) + self.weights[0]
     
     def predict(self, x):
         # return 1 if dot product is equal or greater than 0 else -1
         # it is a step function
-        return np.where(self.weighted_sum(self, x) >= 0.0, 1, -1)
+        return np.where(self.net_input(x) >= 0.0, 1, -1)
 
-    def fit(self, x, y):
-        
+    def fit(self, X, y):
         # initialize weights to be zero
         # size will be input size + 1 (for bias)
-        self.weighted_sum = np.zeros(1 + x.shape[1])
+        self.weights = np.zeros(1 + X.shape[1])
         self.errors = []
         
-        print(f"Weighted_sum: {weighted_sum}")
+        print(f"Initial weights: {self.weights}")
         
         # we iterate n_iters time to find best model configuration
-        for _ in range(n_iters):
+        for _ in range(self.n_iters):
             error = 0
             
             # iterating through each input
-            # xi is the ith input
-            for xi, y in zip(x, y):
+            for xi, target in zip(X, y):
                 
                 # calculate the ŷ (predicted value)
                 y_pred = self.predict(xi)
                 
-                # update = learning_rate * (y - ŷ)
-                update = self.learning_rate * (y - y_pred)
+                # update = learning_rate * (target - ŷ)
+                update = self.learning_rate * (target - y_pred)
                 
                 # update the weights (w = w + Δw)
-                self.weighted_sum[1:] = self.weighted_sum[1:] + update * xi
-                print(f"updated weight: {self.weighted_sum}")
+                self.weights[1:] += update * xi
                 
                 # update the bias
-                self.weighted_sum[0] = self.weighted_sum[0] + update
+                self.weights[0] += update
                
-                # if update is not equal to zero means y  != ŷ (output != predicted value)
-                error += int(update != 0)
+                # if update is not equal to zero means target != ŷ 
+                error += int(update != 0.0)
             
             # append the error
-            self.errors.append(error);
+            self.errors.append(error)
         
         return self
