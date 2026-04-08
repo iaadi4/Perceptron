@@ -85,7 +85,7 @@ predictions = model.predict(X_test)
 Run the included example on the Iris dataset:
 
 ```bash
-python main.py
+python src/perceptron/main.py
 ```
 
 This will:
@@ -100,10 +100,16 @@ This will:
 
 ```
 Perceptron/
-├── perceptron.py      # Core Perceptron class implementation
-├── main.py            # Example usage with Iris dataset
-├── pyproject.toml     # Project configuration
-└── README.md          # This file
+├── src/
+│   └── perceptron/
+│       ├── __init__.py
+│       ├── perceptron.py   # Core Perceptron class implementation
+│       └── main.py         # Example usage with Iris dataset
+├── README.md
+├── requirements.txt
+├── pyproject.toml
+├── .gitignore
+└── .venv/
 ```
 
 ---
