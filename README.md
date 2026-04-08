@@ -17,6 +17,8 @@ The Perceptron operates in two phases:
 ŷ = step(w₁·x₁ + w₂·x₂ + ... + wₙ·xₙ + b)
 ```
 
+<img width="881" height="533" alt="Screenshot from 2026-04-09 00-01-05" src="https://github.com/user-attachments/assets/4c1f6037-d4ef-4254-87bb-a006f1e4767e" />
+
 Where:
 - `w` = weights learned during training
 - `x` = input features
@@ -27,7 +29,10 @@ Where:
 ```
 Δw = learning_rate × (y_true - ŷ) × x
 w = w + Δw
+
 ```
+
+<img width="868" height="391" alt="Screenshot from 2026-04-09 00-01-23" src="https://github.com/user-attachments/assets/3164a380-35e2-4d59-b0ca-157f71ada7a2" />
 
 The algorithm adjusts weights only when predictions are wrong, gradually converging toward an optimal solution.
 
